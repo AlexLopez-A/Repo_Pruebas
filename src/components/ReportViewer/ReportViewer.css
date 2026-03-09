@@ -1,0 +1,98 @@
+.report-viewer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.2s ease;
+}
+
+.report-viewer-content {
+  background: #1e1e32;
+  border: 1px solid #2d2d4a;
+  border-radius: 12px;
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.25s ease;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #2d2d4a;
+  flex-shrink: 0;
+}
+
+.report-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.report-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.zoom-controls button {
+  background: none;
+  border: none;
+  color: #c0c0d0;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.zoom-controls button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.zoom-controls span {
+  font-size: 12px;
+  color: #888;
+  min-width: 45px;
+  text-align: center;
+}
+
+.report-body {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  background: #12122a;
+}
+
+.report-svg-container {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.report-svg-container svg {
+  max-width: none;
+}

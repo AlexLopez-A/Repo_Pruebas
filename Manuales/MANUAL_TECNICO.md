@@ -34,7 +34,7 @@ flowchart LR
     UM --> DISK
     FM --> DISK
     R --> DISK
-    R --> OUT[(reports/*.dot|png|svg|txt)]
+    R --> OUT[(reports: dot, png, svg, txt)]
 ```
 
 ### 2.3 Flujo de ejecucion de un comando
@@ -121,7 +121,7 @@ flowchart LR
   BE --> PARSE[Parser + Dispatcher]
   PARSE --> MOD[Modulo de comando]
   MOD --> DISK[(Disco .mia)]
-  MOD --> REP[(reports/*.dot|png|svg|txt)]
+  MOD --> REP[(reports: dot, png, svg, txt)]
   MOD --> RESP[Resultado JSON]
   RESP --> FE
   FE --> CONS[ConsoleOutput]

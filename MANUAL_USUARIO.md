@@ -103,7 +103,171 @@ npm run dev
 4. Consulte particiones montadas cuando aplique.
 5. Genere reportes y valide archivos en `reports/`.
 
-## 13. Resolucion de problemas comunes
+## 13. Comandos disponibles (titulo, ejemplo y para que es)
+
+> Nota: todos los comandos se escriben en la seccion **Entrada de Comandos** del frontend. Los parametros pueden variar segun tu escenario.
+
+### `execute`
+- Para que es: ejecuta un archivo script `.smia` desde una ruta del sistema.
+- Ejemplo:
+
+```txt
+execute -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/test_full.smia"
+```
+
+### `mkdisk`
+- Para que es: crea un archivo de disco virtual.
+- Ejemplo:
+
+```txt
+mkdisk -size=10 -unit=M -fit=FF -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/discos/Disco1.mia"
+```
+
+### `rmdisk`
+- Para que es: elimina un disco virtual existente.
+- Ejemplo:
+
+```txt
+rmdisk -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/discos/Disco1.mia"
+```
+
+### `fdisk`
+- Para que es: crea, elimina o modifica particiones en un disco.
+- Ejemplo (crear primaria):
+
+```txt
+fdisk -size=2 -unit=M -type=P -fit=WF -name=Part1 -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/discos/Disco1.mia"
+```
+
+### `mount`
+- Para que es: monta una particion para poder usarla en operaciones posteriores.
+- Ejemplo:
+
+```txt
+mount -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/discos/Disco1.mia" -name=Part1
+```
+
+### `mounted`
+- Para que es: muestra el listado de particiones montadas actualmente.
+- Ejemplo:
+
+```txt
+mounted
+```
+
+### `unmount`
+- Para que es: desmonta una particion montada por su ID.
+- Ejemplo:
+
+```txt
+unmount -id=171A
+```
+
+### `mkfs`
+- Para que es: formatea una particion montada con sistema de archivos.
+- Ejemplo:
+
+```txt
+mkfs -id=171A -type=full -fs=2fs
+```
+
+### `login`
+- Para que es: inicia sesion con un usuario dentro del sistema de archivos.
+- Ejemplo:
+
+```txt
+login -user=root -pass=123 -id=171A
+```
+
+### `logout`
+- Para que es: cierra la sesion activa.
+- Ejemplo:
+
+```txt
+logout
+```
+
+### `mkgrp`
+- Para que es: crea un grupo de usuarios (requiere sesion con permisos).
+- Ejemplo:
+
+```txt
+mkgrp -name=developers
+```
+
+### `rmgrp`
+- Para que es: elimina un grupo de usuarios.
+- Ejemplo:
+
+```txt
+rmgrp -name=developers
+```
+
+### `mkusr`
+- Para que es: crea un usuario y lo asocia a un grupo.
+- Ejemplo:
+
+```txt
+mkusr -user=alex -pass=123 -grp=developers
+```
+
+### `rmusr`
+- Para que es: elimina un usuario.
+- Ejemplo:
+
+```txt
+rmusr -user=alex
+```
+
+### `chgrp`
+- Para que es: cambia el grupo de un usuario existente.
+- Ejemplo:
+
+```txt
+chgrp -user=alex -grp=root
+```
+
+### `mkdir`
+- Para que es: crea carpetas dentro del sistema de archivos montado.
+- Ejemplo:
+
+```txt
+mkdir -path="/home/proyectos/docs" -p
+```
+
+### `mkfile`
+- Para que es: crea archivos; puede crear ruta padre y definir contenido/tamano.
+- Ejemplo:
+
+```txt
+mkfile -path="/home/proyectos/docs/notas.txt" -size=128 -p
+```
+
+### `cat`
+- Para que es: muestra el contenido de uno o varios archivos.
+- Ejemplo:
+
+```txt
+cat -file1="/home/proyectos/docs/notas.txt"
+```
+
+### `rep`
+- Para que es: genera reportes (MBR, disco, arbol, superbloque, etc.).
+- Ejemplo:
+
+```txt
+rep -name=mbr -path="/home/alexl/Documentos/LAB ARCHIVOS/Proyecto1/reports/mbr_report.dot" -id=171A
+```
+
+### Comentarios en script
+- Para que es: documentar lineas sin ejecutar comandos.
+- Ejemplo:
+
+```txt
+# Este bloque crea y monta un disco de prueba
+```
+
+## 14. Resolucion de problemas comunes
 
 ### Problema 1: `make && ./sever` falla con codigo 127
 - Causa: el binario se llama `server`, no `sever`.
@@ -182,7 +346,7 @@ npm -v
   2. Confirme que el archivo existe en `reports/`.
   3. Reejecute `rep` con parametros correctos.
 
-## 14. Comandos base de arranque rapido
+## 15. Comandos base de arranque rapido
 ```bash
 # Terminal 1 - Backend
 cd backend
